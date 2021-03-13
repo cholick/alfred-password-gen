@@ -12,6 +12,10 @@ some, but I'm sure I missed many.
 
 ![screenshot](/docs/screenshot.png)
 
+### Installation
+
+Download the newest version via [the latest release](https://github.com/cholick/alfred-password-gen/releases/latest)
+
 ### Notes
 
 [dictionary/process.py](dictionary/process.py) takes [2of12inf.txt](2of12inf.txt) and produces [dictionary/processed.py](dictionary/processed.py) after doing some cleanup.
