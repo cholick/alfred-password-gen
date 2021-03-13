@@ -10,9 +10,11 @@ Selecting a password adds it to the clipboard.
 The dictionary likely still has several offensive or triggering words: I did a quick pass through to remove
 some, but I'm sure I missed many.
 
+![screenshot](/docs/screenshot.png)
+
 ### Notes
 
-
+[dictionary/process.py](dictionary/process.py) takes [2of12inf.txt](2of12inf.txt) and produces [dictionary/processed.py](dictionary/processed.py) after doing some cleanup.
 
 Word source: [12Dicts](http://wordlist.aspell.net/12dicts-readme/)
 
