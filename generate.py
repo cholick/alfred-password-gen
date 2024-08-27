@@ -6,47 +6,62 @@ import secrets
 from dictionary.processed import words
 
 MIN_LENGTH = 10
-MAX_LENGTH = 25
-DEFAULT_LENGTH = 15
+MAX_LENGTH = 35
+DEFAULT_LENGTH = 16
 MIN_WORD_LEN = 4
 SPECIAL_CHARS = '!@#$%^&*()-_=+"\',./\\:;{}~'
-
-
-def debug(*args):
-    print(*args, file=sys.stderr)
 
 
 def get_word(length: int) -> str:
     word_options = words[length]
     word = word_options[secrets.randbelow(len(word_options))]
-    if secrets.randbelow(2):
+
+    caps_chance = random.random()
+    # low chance of all-caps, but just for shorter words
+    if caps_chance > .9 and len(word) < 9:
+        word = word.upper()
+    elif caps_chance > .45:
         word = word.capitalize()
 
     return word
 
 
+def get_word_lengths(total_length: int) -> [int]:
+    min_word_length = 4
+    max_word_length = 13
+    lengths = []
+    remaining = total_length
+    while remaining >= min_word_length:
+        length = random.randint(min_word_length, min(max_word_length, remaining))
+        if remaining - length < min_word_length:
+            if remaining > max_word_length:
+                continue
+            else:
+                length = remaining
+        lengths.append(length)
+        remaining -= length
+
+    # try again if we ended up with just one word
+    if len(lengths) == 1:
+        lengths = get_word_lengths(total_length)
+    return lengths
+
+
 def generate(length: int) -> [str]:
-    number_count = 1 + secrets.randbelow(int(length * .15))
-    symbol_count = 1
-
-    remaining_len = length - symbol_count - 2 * MIN_WORD_LEN - number_count
-    word1_extra = secrets.randbelow(remaining_len + 1)
-    word1_len = MIN_WORD_LEN + word1_extra
-    word2_len = MIN_WORD_LEN + remaining_len - word1_extra
-
-    word1 = get_word(word1_len)
-    word2 = get_word(word2_len)
+    number_count = 1 + secrets.randbelow(int(length * .2))
+    symbol_count = 1 + secrets.randbelow(int(length * .1))
+    word_lengths = get_word_lengths(length - symbol_count - number_count)
 
     components = []
+
+    for word_length in word_lengths:
+        components.append(get_word(word_length))
     for i in range(0, number_count):
         components.append(str(secrets.randbelow(10)))
-    components.append(word1)
-    components.append(word2)
+    for i in range(0, symbol_count):
+        components.append(SPECIAL_CHARS[secrets.randbelow(len(SPECIAL_CHARS))])
+
     random.shuffle(components)
-    components.insert(
-        1 + secrets.randbelow(len(components) - 1),
-        SPECIAL_CHARS[secrets.randbelow(len(SPECIAL_CHARS))]
-    )
 
     return "".join(components)
 
@@ -85,6 +100,5 @@ def main(args: list) -> dict:
 
 if __name__ == "__main__":
     output = main(sys.argv[1:])
-    # debug("returning", output)
 
     sys.stdout.write(json.dumps(output))

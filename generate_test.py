@@ -1,6 +1,8 @@
+import secrets
 import unittest
 
 import generate
+from generate import MAX_LENGTH, MIN_LENGTH
 
 
 class TestMain(unittest.TestCase):
@@ -11,8 +13,8 @@ class TestMain(unittest.TestCase):
 
     def test_default_length(self):
         output = generate.main([])
-        self.assertEqual(15, len(output["items"][0]["title"]))
-        self.assertEqual(15, len(output["items"][0]["arg"]))
+        self.assertEqual(16, len(output["items"][0]["title"]))
+        self.assertEqual(16, len(output["items"][0]["arg"]))
 
 
 class TestGenerate(unittest.TestCase):
@@ -28,7 +30,10 @@ class TestGenerate(unittest.TestCase):
 
     def test_no_dupes(self):
         passwords = []
-        for i in range(0, 1000):
-            passwords.append(generate.generate(15))
+        for i in range(0, 10000):
+            length = secrets.randbelow(MAX_LENGTH - MIN_LENGTH) + MIN_LENGTH + 1
+            password = generate.generate(length)
+            passwords.append(password)
+            self.assertEqual(length, len(password))
 
         self.assertEqual(len(passwords), len(set(passwords)))
