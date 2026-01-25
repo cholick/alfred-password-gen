@@ -1,8 +1,8 @@
 ## alfred-password-gen
 This workflow adds memorable password generation with the keyword `password`.
 
-The `password` keyword can optionally be followed by a number ranging 10-25 to control password length. The
-default is 15.
+The `password` keyword can optionally be followed by a number ranging 10-35 to control password length. The
+default is 16.
 
 Selecting a password adds it to the clipboard.
 
@@ -14,7 +14,7 @@ Download the newest version via [the latest release](https://github.com/cholick/
 ### Why?
 Using a password manager, most passwords should just be completely random. A memorable algorith is useful in situations like
 * WiFi (sharing or entry on devices)
-* Netflix (to more readily type it into the TV)
+* Streaming apps (to more readily type it into the TV on systems that don't have an easy logic from computer code)
 * Something that needs memorization (a device login)
 
 ### Notes
