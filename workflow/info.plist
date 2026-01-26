@@ -131,6 +131,6 @@ Selecting a password adds it to the clipboard.</string>
 	<key>version</key>
 	<string>VERSION_PLACEHOLDER</string>
 	<key>webaddress</key>
-	<string>https://www.cholick.com</string>
+	<string>https://www.cholick.dev</string>
 </dict>
 </plist>
