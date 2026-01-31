@@ -6,7 +6,7 @@ default is 16.
 
 Selecting a password adds it to the clipboard.
 
-![screenshot](/docs/screenshot.png)
+<img src="/docs/screenshot.png" width="600">
 
 ### Installation
 Download the newest version via [the latest release](https://github.com/cholick/alfred-password-gen/releases/latest)
