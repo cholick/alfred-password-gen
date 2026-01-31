@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
-cd "$(dirname "$0")/.."
+
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd "${script_dir}/.."
 
 alfred_dir="$HOME/Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/user.workflow.51FE2278-A1E3-45EC-ACD2-578138BE9DF1/"
 
