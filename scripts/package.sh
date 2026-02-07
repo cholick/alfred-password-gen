@@ -16,6 +16,8 @@ cp dictionary/processed.py /tmp/alfred-password-gen/dictionary
 version=$(cat workflow/version)
 sed -i '' "s/VERSION_PLACEHOLDER/$version/g" /tmp/alfred-password-gen/info.plist
 
+plutil -lint /tmp/alfred-encode-decode/info.plist
+
 cd /tmp/alfred-password-gen
 
 zip -r archive.zip *

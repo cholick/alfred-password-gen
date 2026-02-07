@@ -1,8 +1,7 @@
 ## alfred-password-gen
 This workflow adds memorable password generation with the keyword `password`.
 
-The `password` keyword can optionally be followed by a number ranging 10-35 to control password length. The
-default is 16.
+The `password` keyword can optionally be followed by a number ranging 10-35 to control password length. The default is 16.
 
 Selecting a password adds it to the clipboard.
 

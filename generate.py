@@ -101,4 +101,4 @@ def main(args: list) -> dict:
 if __name__ == "__main__":
     output = main(sys.argv[1:])
 
-    sys.stdout.write(json.dumps(output))
+    print(json.dumps(output))
