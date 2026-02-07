@@ -4,6 +4,8 @@ set -e
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "${script_dir}/.."
 
+plutil -lint workflow/info.plist
+
 mkdir -p /tmp/alfred-password-gen
 mkdir -p /tmp/alfred-password-gen/dictionary
 
@@ -15,8 +17,6 @@ cp dictionary/processed.py /tmp/alfred-password-gen/dictionary
 
 version=$(cat workflow/version)
 sed -i '' "s/VERSION_PLACEHOLDER/$version/g" /tmp/alfred-password-gen/info.plist
-
-plutil -lint /tmp/alfred-encode-decode/info.plist
 
 cd /tmp/alfred-password-gen
 
